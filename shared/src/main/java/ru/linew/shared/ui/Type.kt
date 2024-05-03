@@ -1,4 +1,4 @@
-package ru.linew.vkscrollapp.ui.theme
+package ru.linew.shared.ui
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

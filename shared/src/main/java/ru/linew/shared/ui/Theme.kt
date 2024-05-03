@@ -1,6 +1,5 @@
-package ru.linew.vkscrollapp.ui.theme
+package ru.linew.shared.ui
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
