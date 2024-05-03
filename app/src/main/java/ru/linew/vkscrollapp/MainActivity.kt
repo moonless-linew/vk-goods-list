@@ -13,7 +13,6 @@ import ru.linew.vkscrollapp.ui.Navigation
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             VkScrollAppTheme {
                 Surface(
