@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
@@ -18,9 +17,10 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import ru.linew.goods.impl.ui.model.GoodsItemModel
 import ru.linew.goods.impl.ui.model.GoodsListUiActions
+import java.util.UUID
 
 @Composable
-fun GoodsListScreen(
+internal fun GoodsListScreen(
     modifier: Modifier = Modifier,
     goodsItems: LazyPagingItems<GoodsItemModel>,
     uiActions: (GoodsListUiActions) -> Unit
@@ -41,7 +41,9 @@ fun GoodsListScreen(
                         .fillMaxSize()
                         .padding(8.dp)
                 ) {
-                    items(goodsItems.itemCount / 2) { index ->
+                    items(
+                        count = goodsItems.itemCount / 2,
+                        key = { goodsItems[it]?.id ?: UUID.randomUUID() }) { index ->
                         Row {
                             goodsItems[index * 2]?.let {
                                 GoodsItem(
@@ -53,7 +55,7 @@ fun GoodsListScreen(
                                     images = it.images
                                 )
                             }
-                            Spacer(modifier = Modifier.padding(4.dp))
+                            Spacer(modifier = Modifier.padding(6.dp))
                             goodsItems[index * 2 + 1]?.let {
                                 GoodsItem(
                                     modifier = Modifier
@@ -65,11 +67,11 @@ fun GoodsListScreen(
                                 )
                             } ?: Box(modifier = Modifier.weight(1f))
                         }
-                        Spacer(modifier = Modifier.padding(4.dp))
+                        Spacer(modifier = Modifier.padding(6.dp))
                     }
                     item {
                         if (goodsItems.loadState.append is LoadState.Loading) {
-                            Box(modifier = Modifier.fillMaxWidth()){
+                            Box(modifier = Modifier.fillMaxWidth()) {
                                 CircularProgressIndicator(modifier.align(Alignment.Center))
                             }
                         }

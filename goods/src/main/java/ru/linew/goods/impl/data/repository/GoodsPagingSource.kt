@@ -1,6 +1,5 @@
 package ru.linew.goods.impl.data.repository
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import kotlinx.coroutines.Dispatchers
@@ -8,7 +7,7 @@ import kotlinx.coroutines.withContext
 import ru.linew.goods.api.PAGE_SIZE
 import ru.linew.goods.impl.data.model.Product
 
-class GoodsPagingSource(private val repository: GoodsRepository) : PagingSource<Int, Product>() {
+internal class GoodsPagingSource(private val repository: GoodsRepository) : PagingSource<Int, Product>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         return try {

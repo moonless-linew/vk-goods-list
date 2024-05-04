@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.Dispatchers
-import okhttp3.Dispatcher
 import ru.linew.goods.impl.GoodsListViewModel
 import ru.linew.goods.impl.data.repository.GoodsPagingSource
 import ru.linew.goods.impl.data.repository.GoodsRepository
