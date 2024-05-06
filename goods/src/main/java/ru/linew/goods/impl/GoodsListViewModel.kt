@@ -7,8 +7,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import androidx.paging.map
 import kotlinx.coroutines.flow.map
-import ru.linew.goods.api.PAGE_SIZE
-import ru.linew.goods.impl.data.repository.GoodsPagingSource
 import ru.linew.goods.impl.ui.model.GoodsItemModel
 import ru.linew.goods.impl.ui.model.GoodsListUiActions
 

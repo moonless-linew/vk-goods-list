@@ -3,8 +3,9 @@ package ru.linew.vkscrollapp
 import android.app.Application
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.linew.goods.impl.data.repository.GoodsRepository
-import ru.linew.goods.impl.data.service.DummyJsonService
+import ru.linew.data.GoodsRepository
+import ru.linew.data.repository.GoodsRepositoryImpl
+import ru.linew.data.service.DummyJsonService
 
 class VkScrollApp: Application() {
 
@@ -21,6 +22,6 @@ class VkScrollApp: Application() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(DummyJsonService::class.java)
-        goodsRepository = GoodsRepository(service)
+        goodsRepository = GoodsRepositoryImpl(service)
     }
 }

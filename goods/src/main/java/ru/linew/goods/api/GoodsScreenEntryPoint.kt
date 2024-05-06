@@ -4,14 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.Dispatchers
+import ru.linew.data.GoodsRepository
 import ru.linew.goods.impl.GoodsListViewModel
-import ru.linew.goods.impl.data.repository.GoodsPagingSource
-import ru.linew.goods.impl.data.repository.GoodsRepository
+import ru.linew.goods.impl.GoodsPagingSource
 import ru.linew.goods.impl.ui.GoodsListScreen
 import ru.linew.shared.utils.viewModelFactory
 
 const val GoodsListScreenPath = "goods"
-const val PAGE_SIZE = 20
 
 @Composable
 fun GoodsListEntryPoint(dependencies: GoodsScreenDependencies) {

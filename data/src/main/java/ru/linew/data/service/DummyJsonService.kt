@@ -1,8 +1,8 @@
-package ru.linew.goods.impl.data.service
+package ru.linew.data.service
 
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.linew.goods.impl.data.model.GoodsDto
+import ru.linew.data.model.GoodsDto
 
 interface DummyJsonService {
 

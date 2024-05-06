@@ -23,3 +23,5 @@ rootProject.name = "VkScrollApp"
 include(":app")
 include(":shared")
 include(":goods")
+include(":goods-single-info")
+include(":data")

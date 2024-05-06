@@ -1,4 +1,4 @@
-package ru.linew.goods.impl.data.model
+package ru.linew.data.model
 
 
 import com.google.gson.annotations.SerializedName
