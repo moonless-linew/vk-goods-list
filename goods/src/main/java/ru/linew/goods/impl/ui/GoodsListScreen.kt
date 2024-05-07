@@ -17,6 +17,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import ru.linew.goods.impl.ui.model.GoodsItemModel
 import java.util.UUID
+import kotlin.math.roundToInt
 
 @Composable
 internal fun GoodsListScreen(
@@ -41,11 +42,11 @@ internal fun GoodsListScreen(
                         .padding(8.dp)
                 ) {
                     items(
-                        count = goodsItems.itemCount / 2,
+                        count = goodsItems.itemCount / 2 + 1,
                         key = { goodsItems[it]?.id ?: UUID.randomUUID() }) { index ->
                         Row {
-                            repeat(2) {
-                                goodsItems[index * 2 + it]?.let {
+                            repeat(2) { rowIndex ->
+                                goodsItems.getSafely(index * 2 + rowIndex)?.let {
                                     GoodsItem(
                                         modifier = Modifier
                                             .weight(1f),
@@ -74,5 +75,13 @@ internal fun GoodsListScreen(
             }
         }
 
+    }
+}
+
+private fun LazyPagingItems<GoodsItemModel>.getSafely(index: Int): GoodsItemModel? {
+    return try {
+        this[index]
+    } catch (e: Exception) {
+        null
     }
 }
