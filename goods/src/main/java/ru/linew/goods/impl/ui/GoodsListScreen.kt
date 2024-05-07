@@ -16,14 +16,13 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import ru.linew.goods.impl.ui.model.GoodsItemModel
-import ru.linew.goods.impl.ui.model.GoodsListUiActions
 import java.util.UUID
 
 @Composable
 internal fun GoodsListScreen(
     modifier: Modifier = Modifier,
     goodsItems: LazyPagingItems<GoodsItemModel>,
-    uiActions: (GoodsListUiActions) -> Unit
+    onTransitionToItem: (Int) -> Unit
 ) {
     Box {
         when (goodsItems.loadState.refresh) {
@@ -45,27 +44,22 @@ internal fun GoodsListScreen(
                         count = goodsItems.itemCount / 2,
                         key = { goodsItems[it]?.id ?: UUID.randomUUID() }) { index ->
                         Row {
-                            goodsItems[index * 2]?.let {
-                                GoodsItem(
-                                    modifier = Modifier
-                                        .weight(1f),
-                                    title = it.title,
-                                    description = it.description,
-                                    price = it.price,
-                                    images = it.images
-                                )
+                            repeat(2) {
+                                goodsItems[index * 2 + it]?.let {
+                                    GoodsItem(
+                                        modifier = Modifier
+                                            .weight(1f),
+                                        id = it.id,
+                                        title = it.title,
+                                        description = it.description,
+                                        price = it.price,
+                                        originalPrice = it.originalPrice,
+                                        images = it.images,
+                                        onClick = onTransitionToItem
+                                    )
+                                } ?: Box(modifier = Modifier.weight(1f))
+                                Spacer(modifier = Modifier.padding(6.dp))
                             }
-                            Spacer(modifier = Modifier.padding(6.dp))
-                            goodsItems[index * 2 + 1]?.let {
-                                GoodsItem(
-                                    modifier = Modifier
-                                        .weight(1f),
-                                    title = it.title,
-                                    description = it.description,
-                                    price = it.price,
-                                    images = it.images
-                                )
-                            } ?: Box(modifier = Modifier.weight(1f))
                         }
                         Spacer(modifier = Modifier.padding(6.dp))
                     }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.MarqueeAnimationMode
 import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,6 +31,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,16 +44,20 @@ import ru.linew.shared.ui.VkScrollAppTheme
 @Composable
 internal fun GoodsItem(
     modifier: Modifier = Modifier,
+    id: Int,
     title: String,
     description: String,
     price: String,
-    images: List<String>
+    originalPrice: String?,
+    images: List<String>,
+    onClick: (Int) -> Unit
 ) {
     val pagerState = rememberPagerState(pageCount = { images.size })
     val shimmer = remember { mutableStateOf(true) }
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
+            .clickable { onClick(id) }
             .background(MaterialTheme.colorScheme.surfaceContainerHigh)
             .height(320.dp)
     ) {
@@ -124,11 +131,28 @@ internal fun GoodsItem(
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                 )
             }
-            Text(
-                text = price,
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.Bottom
+            ) {
+                Text(
+                    text = price,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Spacer(modifier = Modifier.padding(4.dp))
+                originalPrice?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.titleMedium
+                            .copy(
+                                textDecoration = TextDecoration.LineThrough,
+                                fontStyle = FontStyle.Italic
+                            ),
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
         }
     }
 
@@ -147,18 +171,23 @@ private fun GoodsItemPreview() {
             GoodsItem(
                 modifier = Modifier
                     .weight(1f),
+                id = 0,
                 title = "VK",
                 description = "VK",
                 price = "1 000 $",
-                images = listOf(R.drawable.test_image.toString())
+                originalPrice = "1 200$",
+                images = listOf(R.drawable.test_image.toString()),
+                onClick = { }
             )
             Spacer(modifier = Modifier.padding(8.dp))
             GoodsItem(
                 modifier = Modifier
                     .weight(1f),
-                title = "VdsfdfsdfsdfsdfsdfssfddfdsfdsfdsfdsfdsfdfsfdsdfsdfsdsfK",
+                id = 0,
+                title = "VKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVK",
                 description = "VK",
-                price = "1 000 $",
+                price = "Бесценно $",
+                originalPrice = null,
                 images = listOf(
                     R.drawable.test_image.toString(),
                     R.drawable.test_image.toString(),
@@ -166,7 +195,8 @@ private fun GoodsItemPreview() {
                     R.drawable.test_image.toString(),
                     R.drawable.test_image.toString(),
                     R.drawable.test_image.toString(),
-                )
+                ),
+                onClick = {}
             )
         }
     }
@@ -189,20 +219,26 @@ private fun GoodsItemPreviewNight() {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight(),
+                id = 0,
                 title = "VK",
                 description = "VK",
                 price = "1 000 $",
-                images = listOf(R.drawable.test_image.toString())
+                originalPrice = "1 200$",
+                images = listOf(R.drawable.test_image.toString()),
+                onClick = {}
             )
             Spacer(modifier = Modifier.padding(8.dp))
             GoodsItem(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight(),
+                id = 0,
                 title = "VK",
                 description = "VK",
                 price = "1 000 $",
-                images = listOf(R.drawable.test_image.toString())
+                originalPrice = null,
+                images = listOf(R.drawable.test_image.toString()),
+                onClick = {}
             )
         }
     }

@@ -20,7 +20,7 @@ fun GoodsListEntryPoint(dependencies: GoodsScreenDependencies) {
     })
     GoodsListScreen(
         goodsItems = viewModel.goodsPager.collectAsLazyPagingItems(Dispatchers.IO),
-        uiActions = viewModel::onAction
+        onTransitionToItem = { }
     )
 }
 
