@@ -23,7 +23,11 @@ internal class GoodsListViewModel(source: GoodsPagingSource) : ViewModel() {
                     description = item.description,
                     price = "${item.price}$",
                     originalPrice = if (hasDiscount) "${(item.price * (1 + item.discountPercentage / 100.0)).roundToInt()}$" else null,
-                    images = item.images
+                    /*
+                    отображение thumbnail обязательно, при этом в большинстве случаев
+                     thumbnail есть в images -> могут быть повторения
+                    */
+                    images = item.images.toMutableList().apply { add(item.thumbnail) }
                 )
             }
         }.cachedIn(viewModelScope)

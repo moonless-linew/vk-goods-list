@@ -12,18 +12,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import ru.linew.goods.R
 import ru.linew.goods.impl.ui.model.GoodsItemModel
 import java.util.UUID
-import kotlin.math.roundToInt
 
 @Composable
 internal fun GoodsListScreen(
     modifier: Modifier = Modifier,
     goodsItems: LazyPagingItems<GoodsItemModel>,
-    onTransitionToItem: (Int) -> Unit
+    onItemClick: (Int) -> Unit
 ) {
     Box {
         when (goodsItems.loadState.refresh) {
@@ -32,7 +33,7 @@ internal fun GoodsListScreen(
             }
 
             is LoadState.Error -> {
-                Text(modifier = Modifier.align(Alignment.Center), text = "Error")
+                Text(modifier = Modifier.align(Alignment.Center), text = stringResource(R.string.error))
             }
 
             else -> {
@@ -56,7 +57,7 @@ internal fun GoodsListScreen(
                                         price = it.price,
                                         originalPrice = it.originalPrice,
                                         images = it.images,
-                                        onClick = onTransitionToItem
+                                        onClick = onItemClick
                                     )
                                 } ?: Box(modifier = Modifier.weight(1f))
                                 Spacer(modifier = Modifier.padding(6.dp))

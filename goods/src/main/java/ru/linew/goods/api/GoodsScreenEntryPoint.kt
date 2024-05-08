@@ -13,14 +13,14 @@ import ru.linew.shared.utils.viewModelFactory
 const val GoodsListScreenPath = "goods"
 
 @Composable
-fun GoodsListEntryPoint(dependencies: GoodsScreenDependencies) {
+fun GoodsListEntryPoint(dependencies: GoodsScreenDependencies, onItemClick: (id: Int) -> Unit) {
     val source = GoodsPagingSource(dependencies.goodsRepository)
     val viewModel = viewModel<GoodsListViewModel>(factory = viewModelFactory {
         GoodsListViewModel(source)
     })
     GoodsListScreen(
         goodsItems = viewModel.goodsPager.collectAsLazyPagingItems(Dispatchers.IO),
-        onTransitionToItem = { }
+        onItemClick = onItemClick
     )
 }
 

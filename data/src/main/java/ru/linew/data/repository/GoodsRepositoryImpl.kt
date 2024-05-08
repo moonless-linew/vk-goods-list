@@ -12,7 +12,7 @@ class GoodsRepositoryImpl(private val service: DummyJsonService) : GoodsReposito
 
     }
 
-    override suspend fun getGoodsItem(id: String): Product {
+    override suspend fun getGoodsItem(id: Int): Product {
         return service.getGoodsItem(id)
     }
 }

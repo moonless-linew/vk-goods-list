@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.linew.goods.R
 import ru.linew.shared.ui.VkScrollAppTheme
+import ru.linew.shared.utils.shimmerBrush
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -155,7 +156,6 @@ internal fun GoodsItem(
             }
         }
     }
-
 }
 
 
@@ -172,8 +172,8 @@ private fun GoodsItemPreview() {
                 modifier = Modifier
                     .weight(1f),
                 id = 0,
-                title = "VK",
-                description = "VK",
+                title = "Title",
+                description = "Title",
                 price = "1 000 $",
                 originalPrice = "1 200$",
                 images = listOf(R.drawable.test_image.toString()),
@@ -184,9 +184,9 @@ private fun GoodsItemPreview() {
                 modifier = Modifier
                     .weight(1f),
                 id = 0,
-                title = "VKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVKVK",
-                description = "VK",
-                price = "Бесценно $",
+                title = "Title",
+                description = "Title",
+                price = "Title $",
                 originalPrice = null,
                 images = listOf(
                     R.drawable.test_image.toString(),
@@ -220,8 +220,8 @@ private fun GoodsItemPreviewNight() {
                     .weight(1f)
                     .fillMaxHeight(),
                 id = 0,
-                title = "VK",
-                description = "VK",
+                title = "Title",
+                description = "Title",
                 price = "1 000 $",
                 originalPrice = "1 200$",
                 images = listOf(R.drawable.test_image.toString()),
@@ -233,8 +233,8 @@ private fun GoodsItemPreviewNight() {
                     .weight(1f)
                     .fillMaxHeight(),
                 id = 0,
-                title = "VK",
-                description = "VK",
+                title = "Title",
+                description = "Title",
                 price = "1 000 $",
                 originalPrice = null,
                 images = listOf(R.drawable.test_image.toString()),

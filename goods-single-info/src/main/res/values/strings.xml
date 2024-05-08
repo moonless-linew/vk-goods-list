@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error">Error</string>
+    <string name="brand">"Brand: "</string>
+    <string name="category">"Category: "</string>
+    <string name="stock">"Stock: "</string>
+    <string name="rating">"Rating: "</string>
+    <string name="description">"Description: "</string>
+</resources>

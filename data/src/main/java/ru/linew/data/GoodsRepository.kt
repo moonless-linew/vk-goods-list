@@ -7,6 +7,6 @@ interface GoodsRepository {
 
     suspend fun getGoods(skip: Int, limit: Int): GoodsDto
 
-    suspend fun getGoodsItem(id: String): Product
+    suspend fun getGoodsItem(id: Int): Product
 
 }
